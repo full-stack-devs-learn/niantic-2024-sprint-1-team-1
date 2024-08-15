@@ -12,8 +12,7 @@ public class Transaction {
     public Transaction(){
 
     }
-    public Transaction(int transactionId, int userId, int categoryId, int vendorId,
-    LocalDate transactionDate, double amount, String notes){
+    public Transaction(int transactionId, int userId, int categoryId, int vendorId, LocalDate transactionDate, double amount, String notes){
         this.transactionId = transactionId;
         this.userId = userId;
         this. categoryId = categoryId;

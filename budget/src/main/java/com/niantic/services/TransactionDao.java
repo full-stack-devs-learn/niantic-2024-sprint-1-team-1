@@ -254,4 +254,44 @@ public class TransactionDao {
 
         jdbcTemplate.update(sql, transactionId);
     }
+
+    public ArrayList<Transaction> getAllTransactions()
+    {
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        String sql = """
+                SELECT transaction_id
+                    , user_id
+                    , category_id
+                    , vendor_id
+                    , transaction_date
+                    , amount
+                    , notes
+                FROM transactions;
+                """;
+
+        SqlRowSet row = jdbcTemplate.queryForRowSet(sql);
+
+        while(row.next())
+        {
+            int transactionId = row.getInt("transaction_id");
+            int userId = row.getInt("user_id");
+            int categoryId = row.getInt("category_id");
+            int vendorId = row.getInt("vendor_id");
+            LocalDate transactionDate = row.getDate("transaction_date").toLocalDate();
+            double amount = row.getDouble("amount");
+            String notes = row.getString("notes");
+
+            Transaction transaction = new Transaction(transactionId, userId, categoryId, vendorId, transactionDate, amount, notes);
+            transactions.add(transaction);
+        }
+        return transactions;
+    }
+
+//    public ArrayList<Transaction> getTransactionByUser()
+//    {
+//
+//    }
+
+
 }
