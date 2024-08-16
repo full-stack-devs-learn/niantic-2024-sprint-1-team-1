@@ -12,13 +12,13 @@ public class User {
     public User() {
     }
 
-    public User(String email, String phone, String lastName, String firstName, String userName, int userId) {
-        this.email = email;
-        this.phone = phone;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.userName = userName;
+    public User(int userId, String userName, String firstName, String lastName, String phone, String email) {
         this.userId = userId;
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.email = email;
     }
 
     public int getUserId() {
