@@ -1,2 +1,4 @@
-package com.niantic.services;public class VendorDao {
+package com.niantic.services;
+
+public class VendorDao {
 }

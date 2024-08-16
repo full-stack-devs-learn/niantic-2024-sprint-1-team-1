@@ -1,2 +1,4 @@
-package com.niantic.services;public class UserDao {
+package com.niantic.services;
+
+public class UserDao {
 }
