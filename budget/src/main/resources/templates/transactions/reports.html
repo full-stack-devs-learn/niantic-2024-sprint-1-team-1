@@ -17,21 +17,27 @@
     </div>
 
     <h3>Transactions by category</h3>
+
+    <table>
+        <tr>
+
+        </tr>
+    </table>
 <!--    if transactions don't work, change to categories-->
-    <form action="transactions" method="get" class="d-flex">
-        <input class="form-control me-sm-2" type="text" name="transactions" placeholder="Category">
+    <form action="reports" method="get" class="d-flex">
+        <input class="form-control me-sm-2" type="text" name="categoryId" placeholder="Category">
         <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
     </form>
 
     <h3>Transactions by User</h3>
-    <form action="transactions" method="get" class="d-flex">
-        <input class="form-control me-sm-2" type="text" name="transactions" placeholder="User">
+    <form action="reports" method="get" class="d-flex">
+        <input class="form-control me-sm-2" type="text" name="userId" placeholder="User">
         <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
     </form>
 
     <h3>Transactions by Vendor</h3>
-    <form action="transactions" method="get" class="d-flex">
-        <input class="form-control me-sm-2" type="text" name="transactions" placeholder="Vendor">
+    <form action="reports" method="get" class="d-flex">
+        <input class="form-control me-sm-2" type="text" name="vendorId" placeholder="Vendor">
         <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
     </form>
 
@@ -60,13 +66,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>May 1, 2020</td>
-                <td>Chin</td>
-                <td>Clothes</td>
-                <td>Target</td>
-                <td>199</td>
-                <td>jacket</td>
+            <tr th:each="transaction:${transactions}">
+                <td th:text="${transaction.transactionDate}"></td>
+                <td th:text="${transaction.userId}"></td>
+                <td th:text="${transaction.categoryId}"></td>
+                <td th:text="${transaction.vendorId}"></td>
+                <td th:text="${transaction.amount}"></td>
+                <td th:text="${transaction.notes}"></td>
             </tr>
         </tbody>
     </table>

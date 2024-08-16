@@ -2,29 +2,27 @@ package com.niantic.services;
 
 import com.niantic.models.Transaction;
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDate;
 
 import javax.sql.DataSource;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+//create DAO like this
+@Component
 public class TransactionDao {
     private final JdbcTemplate jdbcTemplate;
 
-    public TransactionDao(){
-        String databaseUrl = "jdbc:mysql://localhost:3306/budget";
-        String userName = "root";
-        String password = "P@ssword";
-        DataSource dataSource = new BasicDataSource(){{
-            setUrl(databaseUrl);
-            setUsername(userName);
-            setPassword(password);
-        }};
-        jdbcTemplate = new
-        JdbcTemplate(dataSource);
+    @Autowired
+    public TransactionDao(DataSource dataSource)
+    {
+        jdbcTemplate = new JdbcTemplate(dataSource);
     }
+
 // + getTransactionByUser(userId: int): ArrayList<Transaction>
      public ArrayList<Transaction> getTransactionByUser (int userId)
      {
