@@ -10,13 +10,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 
 @Controller
-public class TransactionsController
-{
+public class TransactionsController {
     private TransactionDao transactionDao = new TransactionDao();
 
     @GetMapping("/transactions")
-    public String getAllTransactions(Model model, @RequestParam(required = false) String transaction)
-    {
+    public String getAllTransactions(Model model, @RequestParam(required = false) String transaction) {
         ArrayList<Transaction> transactions;
 
         transactions = transactionDao.getAllTransactions();
@@ -25,5 +23,19 @@ public class TransactionsController
 
         model.addAttribute("transactions", transactions);
         return "transactions/index";
+    }
+
+
+    @GetMapping("/transactions/reports")
+    public String getTransactionReports(Model model, @RequestParam(required = false) String transactions)
+    {
+        ArrayList<String> reports;
+
+        reports = transactionDao.getTransactionReports();
+
+        //StringBuilder builder = new Stringbuilder();
+
+        model.addAttribute("transactions", transactions);
+        return "transactions/reports";
     }
 }

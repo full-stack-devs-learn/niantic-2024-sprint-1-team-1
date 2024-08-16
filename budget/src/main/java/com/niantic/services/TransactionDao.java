@@ -287,6 +287,16 @@ public class TransactionDao {
         }
         return transactions;
     }
+    public ArrayList<String> getTransactionReports()
+    {
+        ArrayList<String> reports = new ArrayList<>();
+
+        reports.add("get Transaction By Category");
+        reports.add("get Transaction By Id");
+
+
+    return reports;
+    }
 
 //    public ArrayList<Transaction> getTransactionByUser()
 //    {
