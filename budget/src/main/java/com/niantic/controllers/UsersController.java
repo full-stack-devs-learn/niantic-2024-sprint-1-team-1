@@ -1,2 +1,5 @@
-package com.niantic.controllers;public class User {
+package com.niantic.controllers;
+
+public class UsersController {
+
 }

@@ -2,61 +2,49 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="fragments/head :: head"></head>
 <body>
-<nav th:replace="fragments/nav :: nav">
-</nav>
-    <h1>Add Transaction</h1>
-<!-- action="transaction"-->
-<!--    <form method="post" th:object="${transaction}">-->
-<!--        <div class="mb-3">-->
-<!--            <label th:for="*{transaction"}></label>-->
-
-<!--             private int transactionId;
-    private int userId;
-    private int categoryId;
-    private int vendorId;
-    private LocalDate transactionDate;
-    private double amount;
-    private String notes;-->
-
-<form method="post">
-    <fieldset>
-        <div>
-            <label class="form-label mt-4">User</label>
-            <select th:field="*{userId}" class="form-select" id="user">
-                <option th:each="user:${users}" th:value="${user.userId}" th:text="${user.userName}"></option>
-            </select>
-        </div>
-        <div>
-            <label class="form-label mt-4">Category</label>
-            <select th:field="*{categoryId}" class="form-select" id="category">
-                <option th:each="category:${categories}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
-            </select>
-        </div>
-        <div>
-            <label class="form-label mt-4">Vendor</label>
-            <select th:field="*{vendorId}" class="form-select" id="vendor">
-                <option th:each="vendor:${vendors}" th:value="${vendor.vendorId}" th:text="${vendor.vendorName}"></option>
-            </select>
-        </div>
-        <div>
-            <label th:for="*{transactionDate}" class="form-label mt-4">Transaction Date</label>
-            <input th:field="*{transactionDate}" type="datetime-local" class="form-control" id="date" aria-describedby="dateHelp" placeholder="Enter date">
-            <small id="emailHelp" class="form-text text-muted">Enter date with Format YYYY-MM-DD.</small>
-        </div>
-        <div>
-            <label th:for="*{amount}" class="form-label mt-4">Amount</label>
-            <input th:field="*{amount}" type="number" class="form-control" id="amount" placeholder="Enter amount">
-        </div>
-        <div>
-            <label th:for="*{notes}" class="form-label mt-4">Notes</label>
-            <textarea th:field=*{notes} class="form-control" id="notes" rows="3"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </fieldset>
-</form>
-
-        </div>
-    </form>
-
+    <nav th:replace="fragments/nav :: nav"></nav>
+    <div class="page-header">
+    <!-- ADDED THIS CODE TO FIX ADD TRANSACTION BUTTON (#DELETECOMMENT):-->
+        <h4 th:if="${action} == 'add'">Add Transaction</h4>
+        <h4 th:if="${action} == 'edit'">Edit Transaction</h4>
+    </div>
+    <div class="container">
+        <form method="post" th:object="${transaction}" action="#">
+            <fieldset>
+            <div>
+                <label class="form-label mt-4">User</label>
+                <select th:field="*{userId}" class="form-select" id="user">
+                    <option th:each="user:${users}" th:value="${user.userId}" th:text="${user.userName}"></option>
+                </select>
+            </div>
+            <div>
+                <label class="form-label mt-4">Category</label>
+                <select th:field="*{categoryId}" class="form-select" id="category">
+                    <option th:each="category:${categories}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
+                </select>
+            </div>
+            <div>
+                <label class="form-label mt-4">Vendor</label>
+                <select th:field="*{vendorId}" class="form-select" id="vendor">
+                    <option th:each="vendor:${vendors}" th:value="${vendor.vendorId}" th:text="${vendor.vendorName}"></option>
+                </select>
+            </div>
+            <div>
+                <label th:for="*{transactionDate}" class="form-label mt-4">Transaction Date</label>
+                <input th:field="*{transactionDate}" type="datetime-local" class="form-control" id="date" aria-describedby="dateHelp" placeholder="Enter date">
+                <small id="emailHelp" class="form-text text-muted">Enter date with Format YYYY-MM-DD.</small>
+            </div>
+            <div>
+                <label th:for="*{amount}" class="form-label mt-4">Amount</label>
+                <input th:field="*{amount}" type="text" class="form-control" id="amount" placeholder="Enter amount">
+            </div>
+            <div>
+                <label th:for="*{notes}" class="form-label mt-4">Notes</label>
+                <textarea th:field=*{notes} class="form-control" id="notes" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary mt-4">Submit</button>
+            </fieldset>
+        </form>
+    </div>
 </body>
 </html>

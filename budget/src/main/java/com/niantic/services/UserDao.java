@@ -2,6 +2,7 @@ package com.niantic.services;
 import com.niantic.models.Category;
 import com.niantic.models.Transaction;
 import com.niantic.models.User;
+import com.niantic.services.UserDao;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

@@ -1,5 +1,6 @@
 package com.niantic.models;
 import java.time.LocalDate;
+
 public class Transaction {
     private int transactionId;
     private int userId;
@@ -12,6 +13,7 @@ public class Transaction {
     public Transaction(){
 
     }
+
     public Transaction(int transactionId, int userId, int categoryId, int vendorId, LocalDate transactionDate, double amount, String notes){
         this.transactionId = transactionId;
         this.userId = userId;
@@ -21,6 +23,7 @@ public class Transaction {
         this.amount = amount;
         this.notes = notes;
     }
+
     public int getTransactionId(){
         return transactionId;
     }

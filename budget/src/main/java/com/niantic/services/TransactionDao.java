@@ -1,6 +1,9 @@
 package com.niantic.services;
 
 import com.niantic.models.Transaction;
+import com.niantic.models.User;
+import com.niantic.models.Category;
+import com.niantic.models.Vendor;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,6 +15,7 @@ import java.time.LocalDate;
 import javax.sql.DataSource;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
 //create DAO like this
 @Component
 public class TransactionDao {

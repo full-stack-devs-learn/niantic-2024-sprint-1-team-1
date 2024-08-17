@@ -1,19 +1,25 @@
 package com.niantic.controllers;
 
+import com.niantic.models.Category;
 import com.niantic.models.Transaction;
+import com.niantic.services.CategoryDao;
 import com.niantic.services.TransactionDao;
+import com.niantic.services.UserDao;
+import com.niantic.services.VendorDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.awt.font.TransformAttribute;
 import java.util.ArrayList;
 
 @Controller
 public class TransactionsController {
+
     @Autowired
     private TransactionDao transactionDao; //transactionDao = new TransactionDao(dataSource);
+    private UserDao userDao;
+    private CategoryDao categoryDao;
+    private VendorDao vendorDao;
 
     @GetMapping("/transactions/index")
     public String getAllTransactions(Model model, @RequestParam(required = false) String transaction) {
@@ -21,9 +27,8 @@ public class TransactionsController {
 
         transactions = transactionDao.getAllTransactions();
 
-        StringBuilder builder = new StringBuilder();
-
         model.addAttribute("transactions", transactions);
+
         return "transactions/index";
     }
 
@@ -35,9 +40,8 @@ public class TransactionsController {
 
         reports = transactionDao.getTransactionReports();
 
-        //StringBuilder builder = new Stringbuilder();
-
         model.addAttribute("transactions", transactions);
+
         return "transactions/reports";
     }
 
@@ -46,7 +50,11 @@ public class TransactionsController {
     public String addTransaction(Model model)
     {
         model.addAttribute("transaction", new Transaction());
+        model.addAttribute("users", userDao.getAllUsers());
+        model.addAttribute("categories", categoryDao.getAllCategories());
+        model.addAttribute("vendors", vendorDao.getAllVendors());
         model.addAttribute("action", "add");
+
         return "transactions/add_edit";
     }
 
@@ -55,20 +63,31 @@ public class TransactionsController {
     {
         transactionDao.addTransaction(transaction);
         model.addAttribute("transaction", transaction);
+
         return "transactions/add_success";
     }
 
-    //Error page
-//    @GetMapping("transactions/404")
-//    public String errorPage(Model model)
-//    {
-//        return "transactions/404";
-//    }
-//
-//    @PostMapping("transactions/404")
-//    public String errorPage(Model model)
-//    {
-//        return "redirect:/reports";
-//    }
-//
+    // Edit Transaction
+    @GetMapping("transactions/{id}/edit")
+    public String editTransaction(Model model, @PathVariable int id)
+    {
+        Transaction transaction = transactionDao.getTransactionById(id);
+        model.addAttribute("transaction", transaction);
+        model.addAttribute("users", userDao.getAllUsers());
+        model.addAttribute("categories", categoryDao.getAllCategories());
+        model.addAttribute("vendors", vendorDao.getAllVendors());
+        model.addAttribute("action", "edit");
+
+        return "transactions/add_edit";
+    }
+
+    @PostMapping("transactions/{id}/edit")
+    public String editTransaction(@ModelAttribute("transaction") Transaction transaction, @PathVariable int id)
+    {
+        transaction.setTransactionId(id);
+        transactionDao.updateTransaction(transaction);
+
+        return "redirect:/transactions";
+    }
+
 }

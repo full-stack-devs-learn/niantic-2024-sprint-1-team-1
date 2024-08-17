@@ -2,51 +2,44 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="fragments/head :: head"></head>
 <body>
-<nav th:replace="fragments/nav :: nav">
-    <h1>Reports</h1>
-</nav>
-<div class="container">
-<h1>Reports</h1>
-</div>
+    <nav th:replace="fragments/nav :: nav"></nav>
+    <div class="container">
+        <h1>Reports</h1>
+    </div>
+    <div class="container">
+        <h3>Transactions by category</h3>
+        <table>
+            <tr>
 
-<div class="container">
+            </tr>
+        </table>
+    <!--    if transactions don't work, change to categories #DELETECOMMENT-->
+        <form action="reports" method="get" class="d-flex">
+            <input class="form-control me-sm-2" type="text" name="categoryId" placeholder="Category">
+            <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
+        </form>
 
-    <h3>Transactions by category</h3>
+        <h3>Transactions by User</h3>
+        <form action="reports" method="get" class="d-flex">
+            <input class="form-control me-sm-2" type="text" name="userId" placeholder="User">
+            <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
+        </form>
 
-    <table>
-        <tr>
-
-        </tr>
-    </table>
-<!--    if transactions don't work, change to categories-->
-    <form action="reports" method="get" class="d-flex">
-        <input class="form-control me-sm-2" type="text" name="categoryId" placeholder="Category">
-        <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
-    </form>
-
-    <h3>Transactions by User</h3>
-    <form action="reports" method="get" class="d-flex">
-        <input class="form-control me-sm-2" type="text" name="userId" placeholder="User">
-        <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
-    </form>
-
-    <h3>Transactions by Vendor</h3>
-    <form action="reports" method="get" class="d-flex">
-        <input class="form-control me-sm-2" type="text" name="vendorId" placeholder="Vendor">
-        <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
-    </form>
-
-    <h3>Transactions by Month</h3>
-    <form action="transactions" method="get" class="d-flex">
-        <input class="form-control me-sm-2" type="text" name="transactions" placeholder="Month">
-        <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
-    </form>
-
-    <h3>Transactions by Year</h3>
-    <form action="transactions" method="get" class="d-flex">
-        <input class="form-control me-sm-2" type="text" name="transactions" placeholder="Year">
-        <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
-    </form>
-</div>
+        <h3>Transactions by Vendor</h3>
+        <form action="reports" method="get" class="d-flex">
+            <input class="form-control me-sm-2" type="text" name="vendorId" placeholder="Vendor">
+            <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
+        </form>
+        <h3>Transactions by Month</h3>
+        <form action="transactions" method="get" class="d-flex">
+            <input class="form-control me-sm-2" type="text" name="transactions" placeholder="Month">
+            <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
+        </form>
+        <h3>Transactions by Year</h3>
+        <form action="transactions" method="get" class="d-flex">
+            <input class="form-control me-sm-2" type="text" name="transactions" placeholder="Year">
+            <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
+        </form>
+    </div>
 </body>
 </html>
