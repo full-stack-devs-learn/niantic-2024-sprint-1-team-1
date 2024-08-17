@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="fragments/head :: head"></head>
+
+    <body>
+    <nav th:replace="fragments/nav :: nav"></nav>
+    <h1> Transactions</h1>
+
+<form action="transactions" method="get" class="mb-3">
+    <input type="text" name="transaction" placeholder="Transaction">
+    <input type="submit" value="Search">
+</form>
+<a th:href="@{/transactions/add}" class="btn btn-success mb-3">Add Transaction</a>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Transaction</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="transaction:${transactions}">
+        <td th:text="${transaction.transactionId}"></td>
+        <td><a th:href="@{|/transactions/${transaction.transactionId}|}" th:text="${transaction.transactionName}"></a></td>
+        <td>
+            <a th:href="@{|/transaction/${transaction.transactionId}/edit|}" class="btn btn-outline-warning">Edit</a>
+            <a th:href="@{|/transaction/${transaction.transactionId}/delete|}" class="btn btn-outline-danger">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>User</th>
+            <th>Category</th>
+            <th>Vendor</th>
+            <th>Amount</th>
+            <th>Notes</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="transaction:${transactions}">
+            <td th:text="${transaction.transactionDate}"></td>
+            <td th:text="${transaction.userId}"></td>
+            <td th:text="${transaction.categoryId}"></td>
+            <td th:text="${transaction.vendorId}"></td>
+            <td th:text="${transaction.amount}"></td>
+            <td th:text="${transaction.notes}"></td>
+        </tr>
+        </tbody>
+    </table>
+    </body>
+
+</html>
