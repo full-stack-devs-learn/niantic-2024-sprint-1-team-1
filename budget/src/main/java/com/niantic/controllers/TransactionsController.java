@@ -15,7 +15,7 @@ public class TransactionsController {
     @Autowired
     private TransactionDao transactionDao; //transactionDao = new TransactionDao(dataSource);
 
-    @GetMapping("/transactions")
+    @GetMapping("/transactions/index")
     public String getAllTransactions(Model model, @RequestParam(required = false) String transaction) {
         ArrayList<Transaction> transactions;
 

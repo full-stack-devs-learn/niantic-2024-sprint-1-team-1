@@ -11,25 +11,8 @@
     <input type="text" name="transaction" placeholder="Transaction">
     <input type="submit" value="Search">
 </form>
-<a th:href="@{/transactions/add}" class="btn btn-success mb-3">Add Transaction</a>
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Transaction</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="transaction:${transactions}">
-        <td th:text="${transaction.transactionId}"></td>
-        <td><a th:href="@{|/transactions/${transaction.transactionId}|}" th:text="${transaction.transactionName}"></a></td>
-        <td>
-            <a th:href="@{|/transaction/${transaction.transactionId}/edit|}" class="btn btn-outline-warning">Edit</a>
-            <a th:href="@{|/transaction/${transaction.transactionId}/delete|}" class="btn btn-outline-danger">Delete</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+    <div class="container">
+    <a th:href="@{/transactions/add}" class="btn btn-success mb-3">Add Transaction</a>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -39,6 +22,7 @@
             <th>Vendor</th>
             <th>Amount</th>
             <th>Notes</th>
+            <th> </th>
         </tr>
         </thead>
         <tbody>
@@ -49,9 +33,14 @@
             <td th:text="${transaction.vendorId}"></td>
             <td th:text="${transaction.amount}"></td>
             <td th:text="${transaction.notes}"></td>
+            <td>
+                <a th:href="@{|/transaction/${transaction.transactionId}/edit|}" class="btn btn-outline-warning">Edit</a>
+                <a th:href="@{|/transaction/${transaction.transactionId}/delete|}" class="btn btn-outline-danger">Delete</a>
+            </td>
         </tr>
         </tbody>
     </table>
+    </div>
     </body>
 
 </html>

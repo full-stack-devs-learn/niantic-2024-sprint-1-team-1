@@ -5,16 +5,11 @@
 <nav th:replace="fragments/nav :: nav">
     <h1>Reports</h1>
 </nav>
-
+<div class="container">
 <h1>Reports</h1>
+</div>
 
 <div class="container">
-    <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action active">Category</a>
-        <a href="#" class="list-group-item list-group-item-action">User</a>
-        <a href="#" class="list-group-item list-group-item-action disabled">Month</a>
-        <a href="#" class="list-group-item list-group-item-action disabled">Year</a>
-    </div>
 
     <h3>Transactions by category</h3>
 
@@ -52,31 +47,6 @@
         <input class="form-control me-sm-2" type="text" name="transactions" placeholder="Year">
         <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
     </form>
-
-    <br>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>User</th>
-                <th>Category</th>
-                <th>Vendor</th>
-                <th>Amount</th>
-                <th>Notes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="transaction:${transactions}">
-                <td th:text="${transaction.transactionDate}"></td>
-                <td th:text="${transaction.userId}"></td>
-                <td th:text="${transaction.categoryId}"></td>
-                <td th:text="${transaction.vendorId}"></td>
-                <td th:text="${transaction.amount}"></td>
-                <td th:text="${transaction.notes}"></td>
-            </tr>
-        </tbody>
-    </table>
-
 </div>
 </body>
 </html>
