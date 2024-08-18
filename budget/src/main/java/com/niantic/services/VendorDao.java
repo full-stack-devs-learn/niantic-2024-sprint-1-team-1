@@ -23,6 +23,13 @@ public class VendorDao {
     public VendorDao(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
+//    @Autowired
+//    private TransactionDao transactionDao; //transactionDao = new TransactionDao(dataSource);
+//    @Autowired
+//    private CategoryDao categoryDao;
+//    @Autowired
+//    private VendorDao vendorDao;
+
 
     //getAllVendor
     public ArrayList<Vendor> getAllVendors()

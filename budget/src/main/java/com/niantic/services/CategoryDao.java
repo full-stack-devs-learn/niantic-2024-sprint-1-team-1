@@ -22,6 +22,12 @@ public class CategoryDao {
     public CategoryDao(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
+//    @Autowired
+//    private TransactionDao transactionDao; //transactionDao = new TransactionDao(dataSource);
+//    @Autowired
+//    private UserDao userDao;
+    @Autowired
+    private VendorDao vendorDao;
 
     public ArrayList<Category> getAllCategories() {
         ArrayList<Category> categories = new ArrayList<>();

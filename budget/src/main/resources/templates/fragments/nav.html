@@ -1,11 +1,3 @@
-<!--<nav class="navbar navbar-expand-lg bg-primary" xmlns:th="http://www.w3.org/1999/xhtml">-->
-<!--    <ul>-->
-<!--        <li><a href="transactions/reports.html" th:href="@{/transactions/reports}">Reports</a></li>-->
-<!--        <li><a href="">Transactions</a></li>-->
-
-<!--    </ul>-->
-<!--</nav>-->
-
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark" xmlns:th="http://www.w3.org/1999/xhtml">
   <div class="container-fluid">
       <img src="https://upload.wikimedia.org/wikipedia/en/9/96/Pink_Panther.png"
@@ -17,12 +9,21 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link active" href="/">Home
+          <a class="nav-link" href="/">Home
             <span class="visually-hidden">(current)</span>
           </a>
         </li>
         <li class="nav-item">
-          <a href="transactions/index" th:href="@{/transactions/index}" class="nav-link active">Transactions</a>
+          <a href="transactions/index" th:href="@{/transactions/index}" class="nav-link">Transactions</a>
+        </li>
+        <li class="nav-item">
+          <a href="users/index" th:href="@{/users/index}" class="nav-link">Users</a>
+        </li>
+        <li class="nav-item">
+          <a href="users/index" th:href="@{/users/index}" class="nav-link">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a href="users/index" th:href="@{/users/index}" class="nav-link">Vendors</a>
         </li>
         <li class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports</a>
@@ -37,7 +38,7 @@
           </div>
         </li>
       </ul>
-<!--        NEED FIX: NOT FUNCTIONING YET-->
+<!--        NEED FIX: NOT FUNCTIONING YET #DELETE IF NOT FIXED-->
         <form class="d-flex">
             <input class="form-control me-sm-2" type="search" placeholder="Search">
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search here</button>

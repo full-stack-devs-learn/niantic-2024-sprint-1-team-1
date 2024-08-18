@@ -18,7 +18,8 @@ import java.util.ArrayList;
 
 //create DAO like this
 @Component
-public class TransactionDao {
+public class TransactionDao
+{
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -26,8 +27,15 @@ public class TransactionDao {
     {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
+    @Autowired
+    private UserDao userDao;
+    @Autowired
+    private CategoryDao categoryDao;
+    @Autowired
+    private VendorDao vendorDao;
 
-// + getTransactionByUser(userId: int): ArrayList<Transaction>
+
+    // + getTransactionByUser(userId: int): ArrayList<Transaction>
      public ArrayList<Transaction> getTransactionByUser (int userId)
      {
         ArrayList<Transaction> transactions = new ArrayList<>();
@@ -226,8 +234,7 @@ public class TransactionDao {
     {
         String sql = """
                 UPDATE transactions
-                SET transaction_id = ?
-                    , user_id = ?
+                SET user_id = ?
                     , category_id = ?
                     , vendor_id = ?
                     , transaction_date = ?
@@ -237,13 +244,13 @@ public class TransactionDao {
                 """;
 
         jdbcTemplate.update(sql
-                , transaction.getTransactionId()
                 , transaction.getUserId()
                 , transaction.getCategoryId()
                 , transaction.getVendorId()
                 , transaction.getTransactionDate()
                 , transaction.getAmount()
-                , transaction.getNotes());
+                , transaction.getNotes()
+                , transaction.getTransactionId());
     }
 
 // + deleteTransaction(transactionId: int): void

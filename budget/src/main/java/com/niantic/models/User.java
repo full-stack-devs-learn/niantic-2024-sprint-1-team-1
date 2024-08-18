@@ -1,6 +1,7 @@
 package com.niantic.models;
 
-public class User {
+public class User
+{
     private int userId;
     private String userName;
     private String firstName;
@@ -9,10 +10,13 @@ public class User {
     private String email;
 
 
-    public User() {
+    public User()
+    {
+
     }
 
-    public User(int userId, String userName, String firstName, String lastName, String phone, String email) {
+    public User(int userId, String userName, String firstName, String lastName, String phone, String email)
+    {
         this.userId = userId;
         this.userName = userName;
         this.firstName = firstName;

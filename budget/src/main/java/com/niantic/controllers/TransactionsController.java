@@ -2,6 +2,7 @@ package com.niantic.controllers;
 
 import com.niantic.models.Category;
 import com.niantic.models.Transaction;
+import com.niantic.models.User;
 import com.niantic.services.CategoryDao;
 import com.niantic.services.TransactionDao;
 import com.niantic.services.UserDao;
@@ -17,9 +18,13 @@ public class TransactionsController {
 
     @Autowired
     private TransactionDao transactionDao; //transactionDao = new TransactionDao(dataSource);
+    @Autowired
     private UserDao userDao;
+    @Autowired
     private CategoryDao categoryDao;
+    @Autowired
     private VendorDao vendorDao;
+
 
     @GetMapping("/transactions/index")
     public String getAllTransactions(Model model, @RequestParam(required = false) String transaction) {
@@ -49,8 +54,10 @@ public class TransactionsController {
     @GetMapping("transactions/add")
     public String addTransaction(Model model)
     {
+        ArrayList<User> users = userDao.getAllUsers();
+
         model.addAttribute("transaction", new Transaction());
-        model.addAttribute("users", userDao.getAllUsers());
+        model.addAttribute("users", users);
         model.addAttribute("categories", categoryDao.getAllCategories());
         model.addAttribute("vendors", vendorDao.getAllVendors());
         model.addAttribute("action", "add");
@@ -87,7 +94,30 @@ public class TransactionsController {
         transaction.setTransactionId(id);
         transactionDao.updateTransaction(transaction);
 
-        return "redirect:/transactions";
+        return "redirect:/transactions/index";
+    }
+
+    // Delete Transaction
+    @GetMapping("transactions/{id}/delete")
+    public String deleteTransaction(Model model, @PathVariable int id)
+    {
+        Transaction transaction = transactionDao.getTransactionById(id);
+        if(transaction == null)
+        {
+            model.addAttribute("message", String.format("Transaction not found for id %d", id));
+            return "404";
+        }
+
+        model.addAttribute("transaction", transaction);
+        return "transactions/delete";
+    }
+
+    @PostMapping("transactions/{id}/delete")
+    public String deleteProduct(@PathVariable int id)
+    {
+        transactionDao.deleteTransaction(id);
+
+        return "redirect:/transactions/index";
     }
 
 }

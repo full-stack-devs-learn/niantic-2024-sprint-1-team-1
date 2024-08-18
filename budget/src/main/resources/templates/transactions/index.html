@@ -7,10 +7,10 @@
     <nav th:replace="fragments/nav :: nav"></nav>
     <h1> Transactions</h1>
 
-<form action="transactions" method="get" class="mb-3">
-    <input type="text" name="transaction" placeholder="Transaction">
-    <input type="submit" value="Search">
-</form>
+    <form action="transactions" method="get" class="mb-3">
+        <input type="text" name="transaction" placeholder="Transaction">
+        <input type="submit" value="Search">
+    </form>
     <div class="container">
     <a th:href="@{/transactions/add}" class="btn btn-success mb-3">Add Transaction</a>
     <table class="table table-hover">
@@ -34,8 +34,8 @@
             <td th:text="${transaction.amount}"></td>
             <td th:text="${transaction.notes}"></td>
             <td>
-                <a th:href="@{|/transaction/${transaction.transactionId}/edit|}" class="btn btn-outline-warning">Edit</a>
-                <a th:href="@{|/transaction/${transaction.transactionId}/delete|}" class="btn btn-outline-danger">Delete</a>
+                <a th:href="@{|/transactions/${transaction.transactionId}/edit|}" class="btn btn-outline-warning">Edit</a>
+                <a th:href="@{|/transactions/${transaction.transactionId}/delete|}" class="btn btn-outline-danger">Delete</a>
             </td>
         </tr>
         </tbody>

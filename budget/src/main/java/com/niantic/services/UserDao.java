@@ -2,12 +2,12 @@ package com.niantic.services;
 import com.niantic.models.Category;
 import com.niantic.models.Transaction;
 import com.niantic.models.User;
-import com.niantic.services.UserDao;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Array;
 import java.time.LocalDate;
@@ -16,15 +16,22 @@ import javax.sql.DataSource;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-@Component
-public class UserDao {
-
+@Repository
+public class UserDao
+{
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public UserDao(DataSource dataSource) {
+    public UserDao(DataSource dataSource)
+    {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
+//    @Autowired
+//    private TransactionDao transactionDao; //transactionDao = new TransactionDao(dataSource);
+//    @Autowired
+//    private CategoryDao categoryDao;
+//    @Autowired
+//    private VendorDao vendorDao;
 
     //getAllUser
     public ArrayList<User> getAllUsers()
