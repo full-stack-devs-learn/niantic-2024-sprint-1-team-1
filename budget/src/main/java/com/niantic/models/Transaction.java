@@ -1,5 +1,9 @@
 package com.niantic.models;
 import java.time.LocalDate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import javax.sql.DataSource;
 
 public class Transaction {
     private int transactionId;
@@ -67,5 +71,6 @@ public class Transaction {
     public void setNotes(String notes){
         this.notes = notes;
     }
+
 }
 

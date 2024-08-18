@@ -16,30 +16,32 @@ import javax.sql.DataSource;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-@Repository
+@Component
 public class UserDao
 {
     private final JdbcTemplate jdbcTemplate;
 
-    public UserDao()
-    {
-        String databaseUrl = "jdbc:mysql://localhost:3306/budget";
-        String userName = "root";
-        String password = "P@ssw0rd";
-        DataSource dataSource = new BasicDataSource(){{
-            setUrl(databaseUrl);
-            setUsername(userName);
-            setPassword(password);
-        }};
-
-        jdbcTemplate = new JdbcTemplate(dataSource);
-    }
-
-//    @Autowired
-//    public UserDao(DataSource dataSource)
+//    public UserDao()
 //    {
+//        String databaseUrl = "jdbc:mysql://localhost:3306/budget";
+//        String userName = "root";
+//        String password = "P@ssw0rd";
+//        DataSource dataSource = new BasicDataSource(){{
+//            setUrl(databaseUrl);
+//            setUsername(userName);
+//            setPassword(password);
+//        }};
+//
 //        jdbcTemplate = new JdbcTemplate(dataSource);
 //    }
+
+    @Autowired
+    public UserDao(DataSource dataSource)
+    {
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+//    @Autowired
+//    private UserDao userDao;
 //    @Autowired
 //    private TransactionDao transactionDao; //transactionDao = new TransactionDao(dataSource);
 //    @Autowired
@@ -106,6 +108,36 @@ public class UserDao
             user = new User(userId, userName, firstName, lastName, phone, email);
         }
         return user;
+    }
+
+    //getUsernameById
+    public String getUserNameById(int userId)
+    {
+        String username = "";
+
+        String sql = """
+                SELECT user_id
+                    , user_name
+                    , first_name
+                    , last_name
+                    , phone
+                    , email
+                FROM users
+                WHERE user_id = ?;
+                """;
+
+        SqlRowSet row = jdbcTemplate.queryForRowSet(sql, userId);
+
+        while (row.next()) {
+            String userName = row.getString("user_name");
+            String firstName = row.getString("first_name");
+            String lastName = row.getString("last_name");
+            String phone = row.getString("phone");
+            String email = row.getString("email");
+
+            username = userName;
+        }
+        return username;
     }
 
 

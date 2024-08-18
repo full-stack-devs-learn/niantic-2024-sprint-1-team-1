@@ -22,27 +22,27 @@ public class TransactionDao
 {
     private final JdbcTemplate jdbcTemplate;
 
-    public TransactionDao()
-    {
-        String databaseUrl = "jdbc:mysql://localhost:3306/budget";
-        String userName = "root";
-        String password = "P@ssw0rd";
-        DataSource dataSource = new BasicDataSource(){{
-            setUrl(databaseUrl);
-            setUsername(userName);
-            setPassword(password);
-        }};
-
-        jdbcTemplate = new JdbcTemplate(dataSource);
-    }
-
-//    @Autowired
-//    public TransactionDao(DataSource dataSource)
+//    public TransactionDao()
 //    {
+//        String databaseUrl = "jdbc:mysql://localhost:3306/budget";
+//        String userName = "root";
+//        String password = "P@ssw0rd";
+//        DataSource dataSource = new BasicDataSource(){{
+//            setUrl(databaseUrl);
+//            setUsername(userName);
+//            setPassword(password);
+//        }};
+//
 //        jdbcTemplate = new JdbcTemplate(dataSource);
 //    }
+
+    @Autowired
+    public TransactionDao(DataSource dataSource)
+    {
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
 //    @Autowired
-//    private UserDao userDao;
+////    private UserDao userDao;
 //    @Autowired
 //    private CategoryDao categoryDao;
 //    @Autowired
@@ -63,7 +63,7 @@ public class TransactionDao
                     , amount
                     , notes
                 FROM transactions
-                WHERE transaction_id = ?;
+                WHERE user_id = ?;
                 """;
 
          SqlRowSet row = jdbcTemplate.queryForRowSet(sql, userId);

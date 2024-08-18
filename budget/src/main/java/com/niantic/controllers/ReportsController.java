@@ -18,20 +18,20 @@ import java.util.ArrayList;
 @Controller
 public class ReportsController
 {
-    private CategoryDao categoryDao = new CategoryDao();
-    private TransactionDao transactionDao = new TransactionDao();
-    private UserDao userDao = new UserDao();
-    private VendorDao vendorDao = new VendorDao();
+//    private CategoryDao categoryDao = new CategoryDao();
+//    private TransactionDao transactionDao = new TransactionDao();
+//    private UserDao userDao = new UserDao();
+//    private VendorDao vendorDao = new VendorDao();
 
 // use this when accessing dao in another controller autowired
-//    @Autowired
-//    private TransactionDao transactionDao; //transactionDao = new TransactionDao(dataSource);
-//    @Autowired
-//    private UserDao userDao;
-//    @Autowired
-//    private CategoryDao categoryDao;
-//    @Autowired
-//    private VendorDao vendorDao;
+    @Autowired
+    private TransactionDao transactionDao; //transactionDao = new TransactionDao(dataSource);
+    @Autowired
+    private UserDao userDao;
+    @Autowired
+    private CategoryDao categoryDao;
+    @Autowired
+    private VendorDao vendorDao;
 
     @GetMapping("/reports/index")
         public String getAllReports(Model model, @RequestParam(required = false) Integer categoryId
@@ -71,7 +71,7 @@ public class ReportsController
 
     // TEST 2
     @GetMapping("reports/byuser")
-    public String getTransactionsByUser(Model model, @RequestParam(required = false, defaultValue = "0") Integer userId)
+    public String getTransactionsByUser(Model model, @RequestParam(required = false, defaultValue = "0") int userId)
     {
         ArrayList<User> users = userDao.getAllUsers();
 
@@ -88,6 +88,8 @@ public class ReportsController
             transactions = transactionDao.getTransactionByUser(userId);
         }
 
+
+        System.out.println("Number of transactions for user " + userId + ": " + transactions.size());
         model.addAttribute("transactions", transactions);
 
         return "reports/byuser";
