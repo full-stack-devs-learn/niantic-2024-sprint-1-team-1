@@ -37,4 +37,67 @@ public class VendorsController
         return "vendors/index";
     }
 
+    //Add vendor
+    @GetMapping("vendors/add")
+    public String addVendor(Model model)
+    {
+        model.addAttribute("vendor", new Vendor());
+        model.addAttribute("action", "add");
+
+        return "vendors/add_edit";
+    }
+
+    @PostMapping("vendors/add")
+    public String addVendor(Model model, @ModelAttribute("vendor") Vendor vendor)
+    {
+        vendorDao.addVendor(vendor);
+        model.addAttribute("vendor", vendor);
+
+        return "vendors/add_success";
+    }
+
+    // Edit vendor
+    @GetMapping("vendors/{id}/edit")
+    public String editVendor(Model model, @PathVariable int id)
+    {
+        Vendor vendor = vendorDao.getVendorById(id);
+        model.addAttribute("vendor", vendor);
+        model.addAttribute("action", "edit");
+
+        return "vendors/add_edit";
+    }
+
+    @PostMapping("vendorss/{id}/edit")
+    public String editVendor(@ModelAttribute("vendor") Vendor vendor, @PathVariable int id)
+    {
+        vendor.setVendorId(id);
+        vendorDao.updateVendor(vendor);
+
+        return "redirect:/vendors/index";
+    }
+
+    // Delete Vendor
+    @GetMapping("vendors/{id}/delete")
+    public String deleteVendor(Model model, @PathVariable int id)
+    {
+        Vendor vendor = vendorDao.getVendorById(id);
+
+        if(vendor == null)
+        {
+            model.addAttribute("message", String.format("vendor not found for id %d", id));
+            return "404";
+        }
+
+        model.addAttribute("vendor", vendor);
+        return "vendors/delete";
+    }
+
+    @PostMapping("vendors/{id}/delete")
+    public String deleteVendor(@PathVariable int id)
+    {
+        vendorDao.deleteVendor(id);
+
+        return "redirect:/vendors/index";
+    }
+
 }

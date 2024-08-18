@@ -177,6 +177,41 @@ public class TransactionDao
         return transactions;
     }
 
+    public ArrayList<Transaction> getTransactionByVendor(int vendorId)
+    {
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        String sql = """
+                SELECT transaction_id
+                    , user_id
+                    , category_id
+                    , vendor_id
+                    , transaction_date
+                    , amount
+                    , notes
+                FROM transactions
+                WHERE vendor_id = ?;
+                """;
+
+        SqlRowSet row = jdbcTemplate.queryForRowSet(sql, vendorId);
+
+        while(row.next())
+        {
+            int transactionId = row.getInt("transaction_id");
+            int userId = row.getInt("user_id");
+            int categoryId = row.getInt("category_id");
+            LocalDate transactionDate = row.getDate("transaction_date").toLocalDate();
+            double amount = row.getDouble("amount");
+            String notes = row.getString("notes");
+
+            Transaction transaction = new Transaction(transactionId, userId, categoryId, vendorId, transactionDate, amount, notes);
+            transactions.add(transaction);
+        }
+        return transactions;
+
+    }
+
+
 // +getTransactionById(transactionId: int): Transaction
     public Transaction getTransactionById(int transactionId)
     {

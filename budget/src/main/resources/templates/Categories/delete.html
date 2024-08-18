@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<nav th:replace="fragments/nav :: nav"></nav>
+<div class="page-header">
+    <h1>Delete Category</h1>
+</div>
+<div class="container">
+
+    <h2>You are about to delete the following category:</h2>
+    <h4>Note: Delete category is only allowed if there are no transactions associated with it. This action cannot be undone.</h4>
+
+    <table class="table">
+        <tr><th>Category Id:</th><td th:text="${category.categoryId}"></td></tr>
+        <tr><th>Category Name:</th><td th:text="${category.categoryName}"></td></tr>
+        <tr><th>Description:</th><td th:text="${category.description}"></td></tr>
+    </table>
+
+    <form method="post">
+        <input type="submit" class="btn btn-danger" value="Delete">
+        <a href="/categories/index" class="btn btn-secondary">Cancel</a>
+    </form>
+
+</div>
+</body>
+</html>

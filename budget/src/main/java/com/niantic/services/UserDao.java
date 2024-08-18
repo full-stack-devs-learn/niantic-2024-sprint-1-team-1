@@ -128,4 +128,55 @@ public class UserDao
 
         return user;
     }
+
+    // Add User
+    public void addUser(User user)
+    {
+        String sql = """
+                INSERT INTO users (user_id, user_name, first_name, last_name, phone, email)
+                VALUES (?,?,?,?,?,?);
+                """;
+
+        jdbcTemplate.update(sql
+                , user.getUserId()
+                , user.getUserName()
+                , user.getFirstName()
+                , user.getLastName()
+                , user.getPhone()
+                , user.getEmail());
+    }
+
+    // + update user
+    public void updateUser(User user)
+    {
+        String sql = """
+                UPDATE users
+                SET user_name = ?
+                    , first_name = ?
+                    , last_name = ?
+                    , phone = ?
+                    , email = ?
+                WHERE user_id = ?;
+                """;
+
+        jdbcTemplate.update(sql
+                , user.getUserName()
+                , user.getFirstName()
+                , user.getLastName()
+                , user.getPhone()
+                , user.getEmail()
+                , user.getUserId());
+    }
+
+    // + delete user
+    public void deleteUser(int userId)
+    {
+        String sql = """
+                DELETE FROM users
+                WHERE user_id = ?
+                """;
+
+        jdbcTemplate.update(sql, userId);
+    }
+
 }

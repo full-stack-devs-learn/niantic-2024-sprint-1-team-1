@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<nav th:replace="fragments/nav :: nav"></nav>
+<div class="page-header">
+    <h1>Delete User</h1>
+</div>
+<div class="container">
+
+    <h2>You are about to delete the following user:</h2>
+    <h4>Note: Delete user is only allowed if there are no transactions associated with it. This action cannot be undone.</h4>
+
+    <table class="table">
+        <tr><th>User Id:</th><td th:text="${user.userId}"></td></tr>
+        <tr><th>User Name:</th><td th:text="${user.userName}"></td></tr>
+        <tr><th>First Name:</th><td th:text="${user.firstName}"></td></tr>
+        <tr><th>Last Name:</th><td th:text="${user.lastName}"></td></tr>
+        <tr><th>Phone:</th><td th:text="${user.phone}"></td></tr>
+        <tr><th>Email:</th><td th:text="${user.email}"></td></tr>
+    </table>
+
+    <form method="post">
+        <input type="submit" class="btn btn-danger" value="Delete">
+        <a href="/users/index" class="btn btn-secondary">Cancel</a>
+    </form>
+
+</div>
+</body>
+</html>

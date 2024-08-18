@@ -2,7 +2,7 @@
   <div class="container-fluid">
       <img src="https://upload.wikimedia.org/wikipedia/en/9/96/Pink_Panther.png"
            width =65px height="100px ">
-    <a class="navbar-brand" href="#">Budget Buddy</a>
+    <a class="navbar-brand" href="/">Budget Buddy</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -20,29 +20,22 @@
           <a href="users/index" th:href="@{/users/index}" class="nav-link">Users</a>
         </li>
         <li class="nav-item">
-          <a href="users/index" th:href="@{/users/index}" class="nav-link">Categories</a>
+          <a href="categories/index" th:href="@{/categories/index}" class="nav-link">Categories</a>
         </li>
         <li class="nav-item">
-          <a href="users/index" th:href="@{/users/index}" class="nav-link">Vendors</a>
+          <a href="vendors/index" th:href="@{/vendors/index}" class="nav-link">Vendors</a>
         </li>
         <li class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">By Category</a>
-            <a class="dropdown-item" href="#">By User</a>
-            <a class="dropdown-item" href="#">Vendor</a>
-            <a class="dropdown-item" href="#">By Year</a>
-            <a class="dropdown-item" href="#">By Month</a>
-              <div class="dropdown-divider"></div>
-              <a href="transactions/reports.html" th:href="@{/transactions/reports}" class="dropdown-item">All Reports</a>
+            <a class="dropdown-item" th:href="@{/reports/by_category}">By Category</a>
+            <a class="dropdown-item" th:href="@{/reports/by_user}">By User</a>
+            <a class="dropdown-item" th:href="@{/reports/by_vendor}">By Vendor</a>
+            <a class="dropdown-item" th:href="@{/reports/by_year}">By Year</a>
+            <a class="dropdown-item" th:href="@{/reports/by_month}">By Month</a>
           </div>
         </li>
       </ul>
-<!--        NEED FIX: NOT FUNCTIONING YET #DELETE IF NOT FIXED-->
-        <form class="d-flex">
-            <input class="form-control me-sm-2" type="search" placeholder="Search">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search here</button>
-        </form>
     </div>
   </div>
 </nav>

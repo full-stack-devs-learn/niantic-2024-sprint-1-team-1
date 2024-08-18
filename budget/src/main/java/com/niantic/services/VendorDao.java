@@ -108,4 +108,45 @@ public class VendorDao {
         return vendor;
     }
 
+    // Add vendor
+    public void addVendor(Vendor vendor)
+    {
+        String sql = """
+                INSERT INTO vendors (vendor_id, vendor_name, website)
+                VALUES (?,?,?);
+                """;
+
+        jdbcTemplate.update(sql
+                , vendor.getVendorId()
+                , vendor.getVendorName()
+                , vendor.getWebsite());
+    }
+
+    // Update vendor
+    public void updateVendor(Vendor vendor)
+    {
+        String sql = """
+                UPDATE vendors
+                SET vendor_name = ?
+                    , website = ?
+                WHERE vendor_id = ?;
+                """;
+
+        jdbcTemplate.update(sql
+                , vendor.getVendorName()
+                , vendor.getWebsite()
+                , vendor.getVendorId());
+    }
+
+    // + delete vendor
+    public void deleteVendor(int vendorId)
+    {
+        String sql = """
+                DELETE FROM vendors
+                WHERE vendor_id = ?
+                """;
+
+        jdbcTemplate.update(sql, vendorId);
+    }
+
 }

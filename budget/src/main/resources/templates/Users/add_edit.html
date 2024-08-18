@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments/head :: head"></head>
+<body>
+    <nav th:replace="fragments/nav :: nav"></nav>
+    <div class="page-header">
+        <h4 th:if="${action} == 'add'">Add User</h4>
+        <h4 th:if="${action} == 'edit'">Edit User</h4>
+    </div>
+    <div class="container">
+        <form method="post" th:object="${user}" action="#">
+            <fieldset>
+                <div>
+                    <label th:for="*{userName}" class="form-label mt-4">Username</label>
+                    <input th:field="*{userName}" type="text" class="form-control" placeholder="Enter username">
+                </div>
+                <div>
+                    <label th:for="*{firstName}" class="form-label mt-4">First Name</label>
+                    <input th:field="*{firstName}" type="text" class="form-control">
+                </div>
+                <div>
+                    <label th:for="*{lastName}" class="form-label mt-4">Last Name</label>
+                    <input th:field="*{lastName}" type="text" class="form-control">
+                </div>
+                <div>
+                    <label th:for="*{phone}" class="form-label mt-4">Phone</label>
+                    <input th:field="*{phone}" type="text" class="form-control">
+                </div>
+                <div>
+                    <label th:for="*{email}" class="form-label mt-4">Email</label>
+                    <input th:field="*{email}" type="text" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary mt-4">Submit</button>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>

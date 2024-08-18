@@ -1,6 +1,7 @@
 package com.niantic.services;
 import com.niantic.models.Category;
 import com.niantic.models.Transaction;
+import com.niantic.models.User;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,8 +15,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 @Component
-public class CategoryDao {
-
+public class CategoryDao
+{
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -99,4 +100,44 @@ public class CategoryDao {
         return categories;
     }
 
+    // Add Category
+    public void addCategory(Category category)
+    {
+        String sql = """
+                INSERT INTO categories (category_id, category_name, description)
+                VALUES (?,?,?);
+                """;
+
+        jdbcTemplate.update(sql
+                , category.getCategoryId()
+                , category.getCategoryName()
+                , category.getDescription());
     }
+
+    // Update category
+    public void updateCategory(Category category)
+    {
+        String sql = """
+                UPDATE categories
+                SET category_name = ?
+                    , description = ?
+                WHERE category_id = ?;
+                """;
+
+        jdbcTemplate.update(sql
+                , category.getCategoryName()
+                , category.getDescription()
+                , category.getCategoryId());
+    }
+
+    // + delete category
+    public void deleteCategory(int categoryId)
+    {
+        String sql = """
+                DELETE FROM categories
+                WHERE category_id = ?
+                """;
+
+        jdbcTemplate.update(sql, categoryId);
+    }
+}
