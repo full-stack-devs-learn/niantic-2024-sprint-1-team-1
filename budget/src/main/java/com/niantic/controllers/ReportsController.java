@@ -1,7 +1,9 @@
 package com.niantic.controllers;
 
+import com.niantic.models.Category;
 import com.niantic.models.Transaction;
 import com.niantic.models.User;
+import com.niantic.models.Vendor;
 import com.niantic.services.CategoryDao;
 import com.niantic.services.TransactionDao;
 import com.niantic.services.UserDao;
@@ -55,21 +57,6 @@ public class ReportsController
             return "reports/index";
         }
 
-    // Transactions by User
-//    @GetMapping("reports/{id}/by_user")
-//    public String getTransactionsByUser(Model model, @PathVariable int id)
-//    {
-//        ArrayList<Transaction> transactions;
-//
-//        transactions = transactionDao.getTransactionByUser(id);
-//
-//        model.addAttribute("transactions", transactions);
-//
-//        return "reports/by_user";
-//
-//    }
-
-    // TEST 2
     @GetMapping("reports/byuser")
     public String getTransactionsByUser(Model model, @RequestParam(required = false, defaultValue = "0") int userId)
     {
@@ -88,35 +75,34 @@ public class ReportsController
             transactions = transactionDao.getTransactionByUser(userId);
         }
 
-
-        System.out.println("Number of transactions for user " + userId + ": " + transactions.size());
         model.addAttribute("transactions", transactions);
 
         return "reports/byuser";
     }
 
-    // TEST 1 NOT WORKING
-//    @GetMapping("reports/byuser")
-//    public String getReportByUsers(Model model, @RequestParam(required = false) String user)
-//    {
-//        ArrayList<Transaction> byuser = new ArrayList<>();
-//
-//        User searchUser = userDao.getUserByName(user);
-//        int userId = searchUser.getUserId();
-//
-//        if(user == null)
-//        {
-//            byuser = transactionDao.getAllTransactions();
-//        }
-//        else
-//        {
-//            byuser = transactionDao.getTransactionByUser(userId);
-//        }
-//
-//        model.addAttribute("byuser", byuser);
-//
-//        return "reports/byuser";
-//    }
+    // Transactions by category
+    @GetMapping("reports/bycategory")
+    public String getTransactionsByCategory(Model model, @RequestParam(required = false, defaultValue = "0") int categoryId)
+    {
+        ArrayList<Category> categories = categoryDao.getAllCategories();
+
+        model.addAttribute("categories", categories);
+
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        if(categoryId == 0)
+        {
+            transactions = transactionDao.getAllTransactions();
+        }
+        else
+        {
+            transactions = transactionDao.getTransactionByCategory(categoryId);
+        }
+
+        model.addAttribute("transactions", transactions);
+
+        return "reports/bycategory";
+    }
 
 //    @GetMapping("reports/by_user/{id}")
 //    public String getTransactionsByUser(Model model, @PathVariable int id)
@@ -131,32 +117,28 @@ public class ReportsController
 //
 //    }
 
-    // Transactions by category
-    @GetMapping("reports/{id}/by_category")
-    public String getTransactionsByCategory(Model model, @PathVariable int id)
-    {
-        ArrayList<Transaction> transactions;
-
-        transactions = transactionDao.getTransactionByCategory(id);
-
-        model.addAttribute("transactions", transactions);
-
-        return "reports/by_category";
-
-    }
-
     // Transactions by vendor
-    @GetMapping("reports/{id}/by_vendor")
-    public String getTransactionsByVendor(Model model, @PathVariable int id)
+    @GetMapping("reports/byvendor")
+    public String getTransactionsByVendor(Model model, @RequestParam(required = false, defaultValue = "0") int vendorId)
     {
-        ArrayList<Transaction> transactions;
+        ArrayList<Vendor> vendors = vendorDao.getAllVendors();
 
-        transactions = transactionDao.getTransactionByVendor(id);
+        model.addAttribute("vendors", vendors);
+
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        if(vendorId == 0)
+        {
+            transactions = transactionDao.getAllTransactions();
+        }
+        else
+        {
+            transactions = transactionDao.getTransactionByVendor(vendorId);
+        }
 
         model.addAttribute("transactions", transactions);
 
-        return "reports/by_vendor";
-
+        return "reports/byvendor";
     }
 
     // Transactions by Month

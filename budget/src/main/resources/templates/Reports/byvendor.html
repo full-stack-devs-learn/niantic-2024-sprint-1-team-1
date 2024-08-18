@@ -4,7 +4,20 @@
 <body>
 <nav th:replace="~{fragments/nav :: nav}"></nav>
 <h1>Transactions by Vendor</h1>
-
+<div class="container">
+    <form method="get" action="/reports/byvendor">
+        <fieldset>
+            <div>
+                <label class="form-label mt-4">Username</label>
+                <select class="form-select" id="vendorId" name="vendorId">
+                    <option value="0">Select Vendor</option>
+                    <option th:each="v:${vendors}" th:value="${v.vendorId}" th:text="${v.vendorName}"></option>
+                </select>
+                <input type="submit" value="Search">
+            </div>
+        </fieldset>
+    </form>
+</div>
 <div class="container">
     <table class="table table-hover">
         <thead>
