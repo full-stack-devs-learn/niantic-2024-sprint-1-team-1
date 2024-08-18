@@ -3,8 +3,32 @@
 <head th:replace="~{fragments/head :: head}"></head>
 <body>
 <nav th:replace="~{fragments/nav :: nav}"></nav>
+<div class="container">
 <h1>Transactions by Month</h1>
-
+<form method="get" action="/reports/bymonth">
+    <fieldset>
+        <div>
+            <label class="form-label mt-4">Month</label>
+            <select class="form-select" id="month" name="month">
+                <option value="0">Select Month</option>
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+            <input type="submit" value="Search">
+        </div>
+    </fieldset>
+</form>
+</div>
 <div class="container">
     <table class="table table-hover">
         <thead>

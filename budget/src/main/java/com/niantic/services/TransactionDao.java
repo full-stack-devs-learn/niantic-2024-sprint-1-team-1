@@ -99,7 +99,7 @@ public class TransactionDao
                     , amount
                     , notes
                 FROM transactions
-                WHERE transaction_date = ?;
+                WHERE transaction_date LIKE ?;
                 """;
 
         SqlRowSet row = jdbcTemplate.queryForRowSet(sql, month);
@@ -136,7 +136,7 @@ public class TransactionDao
                     , amount
                     , notes
                 FROM transactions
-                WHERE transaction_date = ?;
+                WHERE transaction_date LIKE ?;
                 """;
 
         SqlRowSet row = jdbcTemplate.queryForRowSet(sql, year);

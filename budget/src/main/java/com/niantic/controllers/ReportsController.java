@@ -9,6 +9,7 @@ import com.niantic.services.TransactionDao;
 import com.niantic.services.UserDao;
 import com.niantic.services.VendorDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -142,30 +143,56 @@ public class ReportsController
     }
 
     // Transactions by Month
-    @GetMapping("reports/{month}/by_month")
-    public String getTransactionsByMonth(Model model, @PathVariable String month)
+    @GetMapping("reports/bymonth")
+    public String getTransactionsByMonth(Model model, @RequestParam(required = false, defaultValue = "0") String month)
     {
         ArrayList<Transaction> transactions;
 
-        transactions = transactionDao.getTransactionByMonth(month);
+        int monthNumber = Integer.parseInt(month);
+
+        if(monthNumber == 0)
+        {
+            transactions = transactionDao.getAllTransactions();
+        }
+        else
+        {
+            transactions = transactionDao.getTransactionByMonth(month);
+        }
 
         model.addAttribute("transactions", transactions);
 
-        return "reports/by_month";
+        return "reports/bymonth";
 
     }
 
     // Transactions by Year
-    @GetMapping("reports/{year}/by_year")
-    public String getTransactionsYear(Model model, @PathVariable String year)
+    @GetMapping("reports/byyear")
+    public String getTransactionsByYear(Model model, @RequestParam(required = false, defaultValue = "0") String year)
     {
         ArrayList<Transaction> transactions;
 
-        transactions = transactionDao.getTransactionByYear(year);
+        int yearNumber = Integer.parseInt(year);
+
+        if(yearNumber == 0)
+        {
+            transactions = transactionDao.getAllTransactions();
+        }
+        else
+        {
+            transactions = transactionDao.getTransactionByYear(year);
+        }
 
         model.addAttribute("transactions", transactions);
 
-        return "reports/by_year";
+        return "reports/byyear";
+
+//        ArrayList<Transaction> transactions;
+//
+//        transactions = transactionDao.getTransactionByYear(year);
+//
+//        model.addAttribute("transactions", transactions);
+//
+//        return "reports/by_year";
 
     }
 
