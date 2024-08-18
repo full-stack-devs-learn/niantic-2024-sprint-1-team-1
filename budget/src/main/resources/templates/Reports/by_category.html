@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-
-<head th:replace="fragments/head :: head"></head>
-
+<head th:replace="~{fragments/head :: head}"></head>
 <body>
-    <nav th:replace="fragments/nav :: nav"></nav>
+<nav th:replace="~{fragments/nav :: nav}"></nav>
     <h1>Transactions by Category</h1>
     <form action="reports" method="get" class="d-flex">
         <input class="form-control me-sm-2" type="text" name="categoryId" placeholder="Category">

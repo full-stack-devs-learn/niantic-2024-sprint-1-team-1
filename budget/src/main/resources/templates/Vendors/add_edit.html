@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="fragments/head :: head"></head>
+<head th:replace="~{fragments/head :: head}"></head>
 <body>
-    <nav th:replace="fragments/nav :: nav"></nav>
+<nav th:replace="~{fragments/nav :: nav}"></nav>
     <div class="page-header">
         <h4 th:if="${action} == 'add'">Add Vendor</h4>
         <h4 th:if="${action} == 'edit'">Edit Vendor</h4>

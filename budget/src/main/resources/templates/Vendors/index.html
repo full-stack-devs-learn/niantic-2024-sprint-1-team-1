@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-
-<head th:replace="fragments/head :: head"></head>
-
+<head th:replace="~{fragments/head :: head}"></head>
 <body>
-<nav th:replace="fragments/nav :: nav"></nav>
+<nav th:replace="~{fragments/nav :: nav}"></nav>
 <h1>Vendors</h1>
 <form action="vendors" method="get" class="mb-3">
     <input type="text" name="vendor" placeholder="Vendor">

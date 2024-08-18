@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="fragments/head :: head"></head>
+<head th:replace="~{fragments/head :: head}"></head>
 <body>
-<nav th:replace="fragments/nav :: nav">
+<nav th:replace="~{fragments/nav :: nav}"></nav>
 
     <main class="container mt-4">
 
@@ -11,5 +11,4 @@
         <img src="https://w7.pngwing.com/pngs/882/137/png-transparent-man-holding-magnifying-glass-inspector-clouseau-cartoon-atom-ant-comics-others-comics-fictional-character-cartoon-thumbnail.png">
 
     </main>
-</nav>
 </body>
