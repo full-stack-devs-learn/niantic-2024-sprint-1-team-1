@@ -22,17 +22,31 @@ public class TransactionDao
 {
     private final JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    public TransactionDao(DataSource dataSource)
+    public TransactionDao()
     {
+        String databaseUrl = "jdbc:mysql://localhost:3306/budget";
+        String userName = "root";
+        String password = "P@ssw0rd";
+        DataSource dataSource = new BasicDataSource(){{
+            setUrl(databaseUrl);
+            setUsername(userName);
+            setPassword(password);
+        }};
+
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
-    @Autowired
-    private UserDao userDao;
-    @Autowired
-    private CategoryDao categoryDao;
-    @Autowired
-    private VendorDao vendorDao;
+
+//    @Autowired
+//    public TransactionDao(DataSource dataSource)
+//    {
+//        jdbcTemplate = new JdbcTemplate(dataSource);
+//    }
+//    @Autowired
+//    private UserDao userDao;
+//    @Autowired
+//    private CategoryDao categoryDao;
+//    @Autowired
+//    private VendorDao vendorDao;
 
 
     // + getTransactionByUser(userId: int): ArrayList<Transaction>

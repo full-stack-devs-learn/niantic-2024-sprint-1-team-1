@@ -21,11 +21,25 @@ public class UserDao
 {
     private final JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    public UserDao(DataSource dataSource)
+    public UserDao()
     {
+        String databaseUrl = "jdbc:mysql://localhost:3306/budget";
+        String userName = "root";
+        String password = "P@ssw0rd";
+        DataSource dataSource = new BasicDataSource(){{
+            setUrl(databaseUrl);
+            setUsername(userName);
+            setPassword(password);
+        }};
+
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
+
+//    @Autowired
+//    public UserDao(DataSource dataSource)
+//    {
+//        jdbcTemplate = new JdbcTemplate(dataSource);
+//    }
 //    @Autowired
 //    private TransactionDao transactionDao; //transactionDao = new TransactionDao(dataSource);
 //    @Autowired

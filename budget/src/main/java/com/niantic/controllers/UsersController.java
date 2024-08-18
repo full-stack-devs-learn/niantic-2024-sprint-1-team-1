@@ -17,14 +17,19 @@ import java.util.ArrayList;
 @Controller
 public class UsersController
 {
-    @Autowired
-    private TransactionDao transactionDao; //transactionDao = new TransactionDao(dataSource);
-    @Autowired
-    private UserDao userDao;
-    @Autowired
-    private CategoryDao categoryDao;
-    @Autowired
-    private VendorDao vendorDao;
+    private CategoryDao categoryDao = new CategoryDao();
+    private TransactionDao transactionDao = new TransactionDao();
+    private UserDao userDao = new UserDao();
+    private VendorDao vendorDao = new VendorDao();
+
+//    @Autowired
+//    private TransactionDao transactionDao; //transactionDao = new TransactionDao(dataSource);
+//    @Autowired
+//    private UserDao userDao;
+//    @Autowired
+//    private CategoryDao categoryDao;
+//    @Autowired
+//    private VendorDao vendorDao;
 
     @GetMapping("/users/index")
     public String getAllUsers(Model model, @RequestParam(required = false) String user) {
