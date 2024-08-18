@@ -4,7 +4,6 @@
 <body>
     <nav th:replace="fragments/nav :: nav"></nav>
     <div class="page-header">
-    <!-- ADDED THIS CODE TO FIX ADD TRANSACTION BUTTON (#DELETECOMMENT):-->
         <h4 th:if="${action} == 'add'">Add Transaction</h4>
         <h4 th:if="${action} == 'edit'">Edit Transaction</h4>
     </div>

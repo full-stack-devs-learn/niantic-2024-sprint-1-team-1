@@ -1,6 +1,7 @@
 package com.niantic.controllers;
 
 import com.niantic.models.Transaction;
+import com.niantic.models.User;
 import com.niantic.services.CategoryDao;
 import com.niantic.services.TransactionDao;
 import com.niantic.services.UserDao;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 
@@ -19,6 +21,12 @@ public class ReportsController
 // use this when accessing dao in another controller autowired
     @Autowired
     private TransactionDao transactionDao; //transactionDao = new TransactionDao(dataSource);
+    @Autowired
+    private UserDao userDao;
+    @Autowired
+    private CategoryDao categoryDao;
+    @Autowired
+    private VendorDao vendorDao;
 
     @GetMapping("/reports/index")
         public String getAllReports(Model model, @RequestParam(required = false) Integer categoryId
@@ -35,7 +43,7 @@ public class ReportsController
             }
             else {
 
-                //transactions = transactionDao.getAllTransactions();
+                transactions = transactionDao.getAllTransactions();
             }
 
             model.addAttribute("transactions", transactions);
@@ -56,18 +64,65 @@ public class ReportsController
 //
 //    }
 
-    @GetMapping("reports/by_user/{id}")
-    public String getTransactionsByUser(Model model, @PathVariable int id)
+    // TEST 2
+    @GetMapping("reports/byuser")
+    public String getTransactionsByUser(Model model, @RequestParam(required = false, defaultValue = "0") Integer userId)
     {
-        ArrayList<Transaction> transactions;
+        ArrayList<User> users = userDao.getAllUsers();
 
-        transactions = transactionDao.getTransactionByUser(id);
+        model.addAttribute("users", users);
+
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        if(userId == 0)
+        {
+            transactions = transactionDao.getAllTransactions();
+        }
+        else
+        {
+            transactions = transactionDao.getTransactionByUser(userId);
+        }
 
         model.addAttribute("transactions", transactions);
 
-        return "reports/by_user";
-
+        return "reports/byuser";
     }
+
+    // TEST 1 NOT WORKING
+//    @GetMapping("reports/byuser")
+//    public String getReportByUsers(Model model, @RequestParam(required = false) String user)
+//    {
+//        ArrayList<Transaction> byuser = new ArrayList<>();
+//
+//        User searchUser = userDao.getUserByName(user);
+//        int userId = searchUser.getUserId();
+//
+//        if(user == null)
+//        {
+//            byuser = transactionDao.getAllTransactions();
+//        }
+//        else
+//        {
+//            byuser = transactionDao.getTransactionByUser(userId);
+//        }
+//
+//        model.addAttribute("byuser", byuser);
+//
+//        return "reports/byuser";
+//    }
+
+//    @GetMapping("reports/by_user/{id}")
+//    public String getTransactionsByUser(Model model, @PathVariable int id)
+//    {
+//        ArrayList<Transaction> transactions;
+//
+//        transactions = transactionDao.getTransactionByUser(id);
+//
+//        model.addAttribute("transactions", transactions);
+//
+//        return "reports/by_user";
+//
+//    }
 
     // Transactions by category
     @GetMapping("reports/{id}/by_category")

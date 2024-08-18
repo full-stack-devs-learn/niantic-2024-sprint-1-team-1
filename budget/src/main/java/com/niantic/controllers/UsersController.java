@@ -27,10 +27,18 @@ public class UsersController
     private VendorDao vendorDao;
 
     @GetMapping("/users/index")
-    public String getAllUsers(Model model) {
-        ArrayList<User> users;
+    public String getAllUsers(Model model, @RequestParam(required = false) String user) {
+        ArrayList<User> users = new ArrayList<>();
 
-        users = userDao.getAllUsers();
+        if(user == null)
+        {
+            users = userDao.getAllUsers();
+        }
+        else
+        {
+            User userFound = userDao.getUserByName(user);
+            users.add(userFound);
+        }
 
         model.addAttribute("users", users);
 
