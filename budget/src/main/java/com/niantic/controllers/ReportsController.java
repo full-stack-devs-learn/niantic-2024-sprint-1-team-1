@@ -21,12 +21,6 @@ import java.util.ArrayList;
 @Controller
 public class ReportsController
 {
-//    private CategoryDao categoryDao = new CategoryDao();
-//    private TransactionDao transactionDao = new TransactionDao();
-//    private UserDao userDao = new UserDao();
-//    private VendorDao vendorDao = new VendorDao();
-
-// use this when accessing dao in another controller autowired
     @Autowired
     private TransactionDao transactionDao; //transactionDao = new TransactionDao(dataSource);
     @Autowired
@@ -105,18 +99,6 @@ public class ReportsController
         return "reports/bycategory";
     }
 
-//    @GetMapping("reports/by_user/{id}")
-//    public String getTransactionsByUser(Model model, @PathVariable int id)
-//    {
-//        ArrayList<Transaction> transactions;
-//
-//        transactions = transactionDao.getTransactionByUser(id);
-//
-//        model.addAttribute("transactions", transactions);
-//
-//        return "reports/by_user";
-//
-//    }
 
     // Transactions by vendor
     @GetMapping("reports/byvendor")
@@ -186,13 +168,6 @@ public class ReportsController
 
         return "reports/byyear";
 
-//        ArrayList<Transaction> transactions;
-//
-//        transactions = transactionDao.getTransactionByYear(year);
-//
-//        model.addAttribute("transactions", transactions);
-//
-//        return "reports/by_year";
 
     }
 

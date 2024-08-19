@@ -16,10 +16,7 @@ import java.util.ArrayList;
 @Controller
 public class TransactionsController
 {
-//    private CategoryDao categoryDao = new CategoryDao();
-//    private TransactionDao transactionDao = new TransactionDao();
-//    private UserDao userDao = new UserDao();
-//    private VendorDao vendorDao = new VendorDao();
+
 
     @Autowired
     private TransactionDao transactionDao; //transactionDao = new TransactionDao(dataSource);

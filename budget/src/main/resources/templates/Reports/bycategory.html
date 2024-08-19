@@ -13,15 +13,16 @@
                     <option value="0">Select Category</option>
                     <option th:each="c:${categories}" th:value="${c.categoryId}" th:text="${c.categoryName}"></option>
                 </select>
-                <input type="submit" value="Search">
+                <input type="submit" value="Search" class="btn btn-info mt-3">
+
             </div>
         </fieldset>
     </form>
 </div>
-    <div class="container">
-        <table class="table table-hover">
+    <div class="container mt-3">
+        <table class="table table-striped table-hover">
             <thead>
-            <tr>
+            <tr class="table-primary">
                 <th>Date</th>
                 <th>User</th>
                 <th>Category</th>
@@ -31,7 +32,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="transaction:${transactions}">
+            <tr class="table-secondary" style="color:black;"th:each="transaction:${transactions}">
                 <td th:text="${transaction.transactionDate}"></td>
                 <td th:text="${transaction.userId}"></td>
                 <td th:text="${transaction.categoryId}"></td>
