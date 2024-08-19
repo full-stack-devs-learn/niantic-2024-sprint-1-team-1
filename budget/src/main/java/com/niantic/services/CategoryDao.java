@@ -19,30 +19,12 @@ public class CategoryDao
 {
     private final JdbcTemplate jdbcTemplate;
 
-//    public CategoryDao()
-//    {
-//        String databaseUrl = "jdbc:mysql://localhost:3306/budget";
-//        String userName = "root";
-//        String password = "P@ssw0rd";
-//        DataSource dataSource = new BasicDataSource(){{
-//            setUrl(databaseUrl);
-//            setUsername(userName);
-//            setPassword(password);
-//        }};
-//
-//        jdbcTemplate = new JdbcTemplate(dataSource);
-//    }
 
     @Autowired
     public CategoryDao(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
-//    @Autowired
-//    private TransactionDao transactionDao; //transactionDao = new TransactionDao(dataSource);
-//    @Autowired
-//    private UserDao userDao;
-//    @Autowired
-//    private VendorDao vendorDao;
+
 
     public ArrayList<Category> getAllCategories() {
         ArrayList<Category> categories = new ArrayList<>();

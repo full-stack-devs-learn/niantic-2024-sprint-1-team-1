@@ -21,33 +21,13 @@ public class UserDao
 {
     private final JdbcTemplate jdbcTemplate;
 
-//    public UserDao()
-//    {
-//        String databaseUrl = "jdbc:mysql://localhost:3306/budget";
-//        String userName = "root";
-//        String password = "P@ssw0rd";
-//        DataSource dataSource = new BasicDataSource(){{
-//            setUrl(databaseUrl);
-//            setUsername(userName);
-//            setPassword(password);
-//        }};
-//
-//        jdbcTemplate = new JdbcTemplate(dataSource);
-//    }
 
     @Autowired
     public UserDao(DataSource dataSource)
     {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
-//    @Autowired
-//    private UserDao userDao;
-//    @Autowired
-//    private TransactionDao transactionDao; //transactionDao = new TransactionDao(dataSource);
-//    @Autowired
-//    private CategoryDao categoryDao;
-//    @Autowired
-//    private VendorDao vendorDao;
+
 
     //getAllUser
     public ArrayList<User> getAllUsers()

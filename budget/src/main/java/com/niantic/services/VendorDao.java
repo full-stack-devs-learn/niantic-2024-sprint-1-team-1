@@ -19,30 +19,12 @@ import java.util.ArrayList;
 public class VendorDao {
     private final JdbcTemplate jdbcTemplate;
 
-//    public VendorDao()
-//    {
-//        String databaseUrl = "jdbc:mysql://localhost:3306/budget";
-//        String userName = "root";
-//        String password = "P@ssw0rd";
-//        DataSource dataSource = new BasicDataSource(){{
-//            setUrl(databaseUrl);
-//            setUsername(userName);
-//            setPassword(password);
-//        }};
-//
-//        jdbcTemplate = new JdbcTemplate(dataSource);
-//    }
 
     @Autowired
     public VendorDao(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
-//    @Autowired
-//    private TransactionDao transactionDao; //transactionDao = new TransactionDao(dataSource);
-//    @Autowired
-//    private CategoryDao categoryDao;
-//    @Autowired
-//    private VendorDao vendorDao;
+
 
 
     //getAllVendor

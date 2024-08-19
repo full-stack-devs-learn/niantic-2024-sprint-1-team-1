@@ -13,7 +13,7 @@
             <th>Vendor Id</th>
             <th>Vendor Name</th>
             <th>Website</th>
-            <th> </th>
+
         </tr>
         </thead>
         <tbody>
@@ -21,10 +21,7 @@
             <td th:text="${vendor.vendorId}"></td>
             <td th:text="${vendor.vendorName}"></td>
             <td th:text="${vendor.website}"></td>
-<!--            <td>-->
-<!--                <a th:href="@{|/vendor/${vendor.vendorId}/edit|}" class="btn btn-outline-warning">Edit</a>-->
-<!--                <a th:href="@{|/vendor/${vendor.vendorId}/delete|}" class="btn btn-outline-danger">Delete</a>-->
-<!--            </td>-->
+
         </tr>
         </tbody>
     </table>

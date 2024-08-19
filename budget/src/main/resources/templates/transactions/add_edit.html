@@ -3,7 +3,7 @@
 <head th:replace="~{fragments/head :: head}"></head>
 <body>
 <nav th:replace="~{fragments/nav :: nav}"></nav>
-    <div class="page-header">
+    <div class="container">
         <h4 th:if="${action} == 'add'">Add Transaction</h4>
         <h4 th:if="${action} == 'edit'">Edit Transaction</h4>
     </div>
